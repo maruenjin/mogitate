@@ -8,12 +8,22 @@ h1 {
     color: #ff6600;
 }
 
+header {
+    margin-top: 5px;
+    width: 200px;
+    
+}
+
 header h1 {
     color: #ffcc00;
     font-weight: 300;
     font-family: "Helvetica Neue", sans-serif;
     font-size: 18px;
     letter-spacing: 0.5px;
-    margin-bottom: 10px 0;
+    margin-top: 0;
+    margin-bottom: 10px;
     font-style: italic;
 }
+
+
+
