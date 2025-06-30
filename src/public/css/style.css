@@ -1,0 +1,19 @@
+body {
+    background-color: #f9f9f9;
+    font-family: sans-serif;
+    padding: 30px;
+}
+
+h1 {
+    color: #ff6600;
+}
+
+header h1 {
+    color: #ffcc00;
+    font-weight: 300;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px 0;
+    font-style: italic;
+}
