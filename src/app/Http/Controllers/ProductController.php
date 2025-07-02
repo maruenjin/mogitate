@@ -66,9 +66,34 @@ class ProductController extends Controller
     }
     
     public function show(Product $product)
-{
+    {
     return view('products.show', compact('product'));
-}
+    }
+
+    public function search(Request $request)
+    {
+    $query = Product::query();
+
+    if ($request->filled('keyword')) {
+        $query->where('name', 'like', '%' . $request->keyword . '%');
+    }
+
+    if ($request->filled('sort')) {
+        if ($request->sort === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        }
+    } else {
+        $query->orderBy('id', 'asc');
+    }
+
+    $products = $query->paginate(6);
+    $products->appends($request->all());
+
+    return view('products.index', compact('products'));
+    }
+
 
 
 
