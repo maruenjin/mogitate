@@ -22,3 +22,5 @@ Route::post('/products/register', [ProductController::class, 'store'])->name('pr
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])
+    ->name('products.show');
