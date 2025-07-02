@@ -16,9 +16,28 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-    return view('products.index');
+        $query=Product::query();
+
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
+            $query->where('name', 'LIKE', "%{$keyword}%");
+        }
+
+        if ($request->filled('sort')) {
+            if ($request->sort === 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->sort === 'price_desc') {
+                $query->orderBy('price', 'desc');
+            }
+        } else {
+
+            $query->orderBy('id','asc');
+        }
+            $products = $query->paginate(6);
+            $products->appends($request->all());
+    return view('products.index',compact('products'));
     }
 
     public function store(StoreProductRequest $request)
