@@ -65,6 +65,11 @@ class ProductController extends Controller
             ->with('success', '商品を登録しました！');
     }
     
+    public function show(Product $product)
+{
+    return view('products.show', compact('product'));
+}
+
 
 
 
