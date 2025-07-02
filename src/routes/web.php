@@ -21,3 +21,4 @@ Route::get('/products/register', [ProductController::class, 'create'])->name('pr
 Route::post('/products/register', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
