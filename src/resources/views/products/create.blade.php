@@ -3,7 +3,6 @@
 @section('content')
     <h1>商品登録</h1>
 
-    {{-- エラーメッセージ表示 --}}
     @if ($errors->any())
         <div style="color: red;">
             <ul>
@@ -17,7 +16,6 @@
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        {{-- 商品名 --}}
         <div>
             <label>商品名</label><br>
             <input type="text" name="name" placeholder="商品名を入力" value="{{ old('name') }}">
@@ -26,7 +24,6 @@
             @enderror
         </div>
 
-        {{-- 値段 --}}
         <div>
             <label>値段</label><br>
             <input type="number" name="price" placeholder="値段を入力" value="{{ old('price') }}">
@@ -35,7 +32,6 @@
             @enderror
         </div>
 
-        {{-- 商品画像 --}}
         <div>
             <label>商品画像</label><br>
             <input type="file" name="image">
@@ -44,7 +40,6 @@
             @enderror
         </div>
 
-        {{-- 季節 --}}
         <div>
             <label>季節</label><br>
             <input type="radio" name="season" value="春" {{ old('season') == '春' ? 'checked' : '' }}> 春
@@ -56,7 +51,6 @@
             @enderror
         </div>
 
-        {{-- 商品説明 --}}
         <div>
             <label>商品説明</label><br>
             <textarea name="description" placeholder="商品の説明を入力">{{ old('description') }}</textarea>
