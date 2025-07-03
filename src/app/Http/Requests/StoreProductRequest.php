@@ -26,7 +26,9 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => ['required'],
         'price' => ['required', 'numeric', 'between:0,10000'],
-        'season' => ['required'],
+        'season' => ['required', 'array'],
+        'season.*' => ['integer', 'exists:seasons,id'],
+
         'description' => ['required', 'max:120'],
         'image' => ['required', 'mimes:png,jpeg'], 
         ];
