@@ -13,7 +13,8 @@ class ProductController extends Controller
 {
     public function create()
     {
-        return view('products.create');
+        $seasons = Season::all();
+        return view('products.create',compact('seasons'));
     }
 
     public function index(Request $request)
@@ -93,6 +94,44 @@ class ProductController extends Controller
 
     return view('products.index', compact('products'));
     }
+
+    public function edit(Product $product)
+    {
+        $seasons = Season::all();
+        $productSeasonIds = $product->seasons->pluck('id')->toArray();
+        return view('products.edit', compact('product', 'seasons', 'productSeasonIds'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'name' => ['required'],
+            'price' => ['required', 'numeric', 'between:0,10000'],
+            'description' => ['required', 'max:120'],
+            'image' => ['nullable', 'mimes:png,jpeg'],
+            'season' => ['required', 'array'],
+        ]);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $product->image = $path;
+        }
+
+        $product->name = $validated['name'];
+        $product->price = $validated['price'];
+        $product->description = $validated['description'];
+        $product->save();
+
+        $product->seasons()->sync($validated['season']);
+
+        return redirect()->route('products.index')->with('success', '更新しました！');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('products.index')->with('success', '削除しました！');
+    }
+
 
 
 
