@@ -102,15 +102,10 @@ class ProductController extends Controller
         return view('products.edit', compact('product', 'seasons', 'productSeasonIds'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(StoreProductRequest $request, Product $product)
     {
-        $validated = $request->validate([
-            'name' => ['required'],
-            'price' => ['required', 'numeric', 'between:0,10000'],
-            'description' => ['required', 'max:120'],
-            'image' => ['nullable', 'mimes:png,jpeg'],
-            'season' => ['required', 'array'],
-        ]);
+        $validated = $request->validated();
+      
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('products', 'public');
             $product->image = $path;
