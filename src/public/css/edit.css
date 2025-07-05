@@ -1,7 +1,6 @@
 form {
     max-width: 600px;
     margin: 30px auto;
-    background: #fff;
     padding: 20px;
     border-radius: 8px;
 }
@@ -48,3 +47,71 @@ img.preview {
     max-width: 200px;
     margin-top: 10px;
 }
+
+.btn-delete {
+    background: none;
+    color: red;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    
+}
+
+.btn-delete:hover {
+    color: darkred !important;
+}
+
+.wrapper-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.wrapper-buttons .btn-back,
+.wrapper-buttons .btn-save,
+.wrapper-buttons .btn-delete {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-back {
+    background-color: #ccc;
+    color: #333;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    background: #bbb;
+}
+
+.btn-save {
+    background: #ffcc00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background: #ff9900;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
