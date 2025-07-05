@@ -1,21 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>商品登録</h1>
+    
 
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
+        <h1>商品登録</h1> 
         <div>
             <label>商品名</label><br>
             <input type="text" name="name" placeholder="商品名を入力" value="{{ old('name') }}">
@@ -41,15 +33,18 @@
         </div>
 
         <div>
-            <label>季節</label><br>
-            <input type="radio" name="season" value="春" {{ old('season') == '春' ? 'checked' : '' }}> 春
-            <input type="radio" name="season" value="夏" {{ old('season') == '夏' ? 'checked' : '' }}> 夏
-            <input type="radio" name="season" value="秋" {{ old('season') == '秋' ? 'checked' : '' }}> 秋
-            <input type="radio" name="season" value="冬" {{ old('season') == '冬' ? 'checked' : '' }}> 冬
-            @error('season')
-                <div style="color: red;">{{ $message }}</div>
-            @enderror
-        </div>
+        <label>季節</label><br>
+    @foreach ($seasons as $season)
+        <input type="checkbox" name="season[]" value="{{ $season->id }}"
+            {{ is_array(old('season')) && in_array($season->id, old('season')) ? 'checked' : '' }}>
+        {{ $season->name }}
+    @endforeach
+    @error('season')
+        <div style="color: red; margin-top: 5px;">{{ $message }}</div>
+    @enderror
+</div>
+            
+       
 
         <div>
             <label>商品説明</label><br>
@@ -60,7 +55,9 @@
         </div>
 
         <br>
-        <button type="submit">登録</button>
+        <div class="button-group">
         <a href="{{ route('products.index') }}">戻る</a>
+        <button type="submit">登録</button>
+      </div>
     </form>
 @endsection
