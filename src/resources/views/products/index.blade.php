@@ -28,8 +28,8 @@
 
         <div class="product-grid">
             @foreach ($products as $product)
-                <a href="{{ route('products.show', $product->id) }}" class="product-card-link">
-                    <div class="product-card">
+                <a href="{{ route('products.edit', $product->id) }}" class="product-card-link">
+                   <div class="product-card">
                         @if ($product->image)
                             <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
                         @else
@@ -38,7 +38,7 @@
 
                         <h2>{{ $product->name }}</h2>
                         <p>￥{{ number_format($product->price) }}</p>
-                    </div>
+                    </div>  
                 </a>
             @endforeach
         </div>  
